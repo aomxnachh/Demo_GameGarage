@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    text-rendering: pixelated;
+  }
+  
+  body {
+    @apply bg-gamegarage-black text-white;
+    font-family: 'Jersey 10', monospace;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Jersey 10', monospace;
+    letter-spacing: 1px;
+    line-height: 1.4;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 transition-all duration-200;
+  }
+  
+  .btn-primary {
+    @apply bg-gamegarage-yellow text-gamegarage-black hover:bg-gamegarage-orange pixel-border;
+  }
+  
+  .card {
+    @apply bg-gamegarage-gray overflow-hidden transition-all duration-300;
+  }
+  
+  .pixel-border {
+    @apply border-3 border-gamegarage-border;
+  }
+  
+  .game-card {
+    @apply bg-gamegarage-black border-3 border-gamegarage-yellow relative hover:transform hover:scale-[1.02] transition-all duration-300;
+  }
+  
+  .nav-link {
+    @apply text-gamegarage-light-gray hover:text-gamegarage-yellow transition-colors duration-200 font-['Jersey_10'] text-base md:text-lg relative pb-2;
+  }
+  
+  .nav-link.active {
+    @apply text-gamegarage-yellow;
+  }
+  
+  .nav-link.active::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-1 bg-gamegarage-yellow;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-1 bg-gamegarage-yellow transition-all duration-300;
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pixelFlicker {
+  0% { opacity: 1; }
+  2% { opacity: 0.8; }
+  4% { opacity: 1; }
+  50% { opacity: 1; }
+  52% { opacity: 0.8; }
+  54% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+.animate-pixel-flicker {
+  animation: pixelFlicker 5s infinite;
+}
