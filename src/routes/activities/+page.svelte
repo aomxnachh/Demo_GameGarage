@@ -4,7 +4,7 @@
     title: string;
     description: string;
     date: string;
-    type: 'upcoming' | 'past';
+    type: 'upcoming' | 'post';
     image: string;
   }
   
@@ -15,7 +15,7 @@
            i === 3 ? "Character Design" : i === 4 ? "VFX Workshop" : "Indie Game Talk",
     description: "Learn how to create stunning pixel art for your games. This workshop covers character design, environments, and animation basics.",
     date: "01/09/2025",
-    type: i === 0 ? 'upcoming' : 'past',
+    type: i === 0 ? 'upcoming' : 'post',
     image: "/placeholder.jpg"
   }));
 
@@ -103,12 +103,12 @@
           </div>
           
           {#if activity.type === 'upcoming'}
-            <div class="absolute top-0 left-0 bg-green-500 text-gamegarage-black text-xs font-['Jersey_10'] py-1 px-2 pixel-border border-0 border-r-2 border-b-2 border-black z-10">
+            <div class="absolute top-0 left-0 bg-gamegarage-yellow text-gamegarage-black text-xs font-['Jersey_10'] py-1 px-2 pixel-border border-0 border-r-2 border-b-2 border-black z-10">
               UPCOMING
             </div>
           {:else}
-            <div class="absolute top-0 left-0 bg-red-500 text-gamegarage-black text-xs font-['Jersey_10'] py-1 px-2 pixel-border border-0 border-r-2 border-b-2 border-black z-10">
-              PAST
+            <div class="absolute top-0 left-0 bg-gamegarage-orange text-gamegarage-black text-xs font-['Jersey_10'] py-1 px-2 pixel-border border-0 border-r-2 border-b-2 border-black z-10">
+              POST
             </div>
           {/if}
         </div>
@@ -117,11 +117,11 @@
           <h2 class="font-['Jersey_10'] text-sm mb-3 text-gamegarage-yellow leading-relaxed">{activity.title}</h2>
           <p class="font-['Jersey_10'] text-base text-gray-300 mb-3 line-clamp-3">{activity.description}</p>
           <div class="flex justify-between items-center text-xs mt-auto">
-            <div class="flex items-center text-gamegarage-gray-200">
+            <div class="flex items-center text-gamegarage-light-gray">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <span class="font-['Jersey_10'] text-gray-200">{activity.date}</span>
+              <span class="font-['Jersey_10'] text-base">{activity.date}</span>
             </div>
             <div class="text-gamegarage-yellow font-['Jersey_10'] text-[10px]">
               ACTIVITIES
@@ -143,7 +143,7 @@
       <button class="w-10 h-10 flex items-center justify-center pixel-border bg-gamegarage-black hover:bg-gamegarage-gray transition-colors font-['Jersey_10'] text-base hover:text-gamegarage-yellow">1</button>
       <button class="w-10 h-10 flex items-center justify-center pixel-border bg-gamegarage-yellow text-gamegarage-black font-['Jersey_10'] text-base">2</button>
       <button class="w-10 h-10 flex items-center justify-center pixel-border bg-gamegarage-black hover:bg-gamegarage-gray transition-colors font-['Jersey_10'] text-base hover:text-gamegarage-yellow">3</button>
-      <span class="w-10 h-10 flex items-center justify-center text-gamegarage-light-gray= font-['Jersey_10'] text-base">...</span>
+      <span class="w-10 h-10 flex items-center justify-center text-gamegarage-light-gray font-['Jersey_10'] text-base">...</span>
       <button class="w-10 h-10 flex items-center justify-center pixel-border bg-gamegarage-black hover:bg-gamegarage-gray transition-colors font-['Jersey_10'] text-base hover:text-gamegarage-yellow">10</button>
       <button class="w-10 h-10 flex items-center justify-center pixel-border bg-gamegarage-black hover:bg-gamegarage-gray transition-colors group" aria-label="Next page">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:text-gamegarage-yellow transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
