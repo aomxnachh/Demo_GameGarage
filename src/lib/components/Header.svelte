@@ -55,14 +55,6 @@
       
       <!-- User section -->
       <div class="flex items-center space-x-4">
-        <!-- Level indicator -->
-        <div class="hidden md:flex items-center space-x-2">
-          <div class="relative h-4 w-28 bg-gamegarage-dark pixel-border overflow-hidden">
-            <div class="absolute top-0 left-0 h-full bg-gamegarage-yellow" style="width: {(userLevel.currentXP / userLevel.nextLevelXP) * 100}%;"></div>
-          </div>
-          <span class="text-gamegarage-yellow font-['Jersey_10'] text-base">LV.{userLevel.level}</span>
-        </div>
-        
         <!-- Notification bell -->
         <div class="relative">
           <button 
@@ -105,9 +97,17 @@
           {/if}
         </div>
         
-        <!-- User profile -->
+        <!-- User profile with level indicator -->
         <a href="/profile" class="flex items-center space-x-3 group">
-          <span class="text-base hidden md:inline-block font-['Jersey_10']">Demo User</span>
+          <div class="hidden md:flex flex-col justify-center items-end">
+            <span class="text-base font-['Jersey_10']">Demo User</span>
+            <div class="flex items-center space-x-1">
+              <div class="relative h-2 w-20 bg-gamegarage-dark pixel-border overflow-hidden">
+                <div class="absolute top-0 left-0 h-full bg-gamegarage-yellow" style="width: {(userLevel.currentXP / userLevel.nextLevelXP) * 100}%;"></div>
+              </div>
+              <span class="text-gamegarage-yellow font-['Jersey_10'] text-xs">LV.{userLevel.level}</span>
+            </div>
+          </div>
           <div class="w-12 h-12 bg-gamegarage-gray pixel-border border-2 overflow-hidden transition-transform duration-300 group-hover:scale-110 flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 text-gamegarage-light-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />

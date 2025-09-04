@@ -1,12 +1,27 @@
 <script lang="ts">
+  interface Project {
+    id: string;
+    title: string;
+    description: string;
+    author: string;
+    date: string;
+    tags: string[];
+    image?: string;
+  }
+
+  interface ContributedProject extends Project {
+    contributionType: string;
+    ownerName: string;
+  }
+  
   // User profile data
   const profile = {
     name: "Demo User",
     bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam (Bio)",
-    level: 2,
+    level: 12, // Updated to match the navbar level
     xp: {
-      current: 400,
-      total: 500
+      current: 750,
+      total: 1000
     },
     badges: Array(5).fill({
       name: "Game Master",
@@ -19,6 +34,68 @@
       github: "yourgithub"
     }
   };
+  
+  // My Projects data
+  const myProjects: Project[] = [
+    {
+      id: "project-1",
+      title: "Pixel Dungeon",
+      description: "A pixel art roguelike dungeon crawler with procedurally generated levels.",
+      author: "Demo User",
+      date: "01/09/2025",
+      tags: ["Adventure", "Roguelike"]
+    },
+    {
+      id: "project-2",
+      title: "Space Explorer",
+      description: "An open-world space exploration game with trading and combat.",
+      author: "Demo User",
+      date: "15/08/2025",
+      tags: ["Space", "Exploration"]
+    },
+    {
+      id: "project-3",
+      title: "Monster Tamer",
+      description: "Collect and train monsters in this turn-based RPG adventure.",
+      author: "Demo User",
+      date: "20/07/2025",
+      tags: ["RPG", "Monsters"]
+    }
+  ];
+  
+  // Projects I've contributed to
+  const contributedProjects: ContributedProject[] = [
+    {
+      id: "contrib-1",
+      title: "Robo Run",
+      description: "A fast-paced platformer where you control a robot through dangerous obstacles.",
+      author: "PixelMaster",
+      ownerName: "PixelMaster",
+      date: "05/08/2025",
+      tags: ["Platformer", "Action"],
+      contributionType: "Level Design"
+    },
+    {
+      id: "contrib-2",
+      title: "Castle Defense",
+      description: "Defend your castle from waves of enemies in this tower defense game.",
+      author: "GameDev123",
+      ownerName: "GameDev123",
+      date: "10/07/2025",
+      tags: ["Strategy", "Tower Defense"],
+      contributionType: "Gameplay Mechanics"
+    },
+    {
+      id: "contrib-3",
+      title: "Farm Simulator",
+      description: "Build and manage your own farm in this relaxing simulation game.",
+      author: "RetroGamer",
+      ownerName: "RetroGamer",
+      date: "25/06/2025",
+      tags: ["Simulation", "Relaxing"],
+      contributionType: "Sound Design"
+    }
+  ];
   
   // Calculate XP percentage
   const xpPercentage = (profile.xp.current / profile.xp.total) * 100;
@@ -46,14 +123,14 @@
         <p class="text-gray-300 mb-4">{profile.bio}</p>
         
         <div class="flex flex-col md:flex-row md:items-center gap-4">
-          <div class="bg-gamegarage-gray px-3 py-1 rounded text-sm inline-flex items-center">
-            Level: <span class="text-gamegarage-yellow ml-1">{profile.level}</span>
+          <div class="bg-gamegarage-dark pixel-border text-sm inline-flex items-center px-3 py-1">
+            Level: <span class="text-gamegarage-yellow ml-1 font-['Jersey_10']">{profile.level}</span>
           </div>
           <div class="flex-1">
-            <div class="h-2 bg-gamegarage-gray rounded-full overflow-hidden">
+            <div class="h-3 bg-gamegarage-dark pixel-border overflow-hidden">
               <div class="h-full bg-gamegarage-yellow" style="width: {xpPercentage}%"></div>
             </div>
-            <div class="text-xs text-right mt-1 text-gray-400">
+            <div class="text-xs text-right mt-1 text-gamegarage-yellow font-['Jersey_10']">
               {profile.xp.current} / {profile.xp.total} XP
             </div>
           </div>
@@ -126,16 +203,94 @@
     </div>
   </div>
   
-  <!-- User Activities -->
+  <!-- My Projects -->
   <div class="mt-8">
     <div class="flex justify-between items-center mb-4">
-      <h2 class="text-xl font-pixel">Recent Activities</h2>
-      <a href="/profile/activities" class="text-gamegarage-yellow hover:underline">View All</a>
+      <h2 class="text-xl font-['Jersey_10']">My Projects</h2>
+      <a href="/projects?filter=my-projects" class="text-gamegarage-yellow hover:underline font-['Jersey_10']">View All</a>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {#each myProjects as project, i}
+        <a href={`/projects/${project.id}`} class="bg-gamegarage-gray rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition-transform animate-slide-in" style="animation-delay: {0.3 + (i * 0.1)}s">
+          <div class="h-40 bg-gamegarage-light-gray relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+              </svg>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-['Jersey_10'] text-gamegarage-yellow mb-1">
+              {project.title}
+            </h3>
+            <div class="flex items-center text-xs text-gray-400 mb-2">
+              <span>Created: {project.date}</span>
+              <span class="mx-2">•</span>
+              <span class="bg-gamegarage-dark px-2 py-1 rounded">{project.tags[0]}</span>
+            </div>
+            <p class="text-sm text-gray-300 line-clamp-2">
+              {project.description}
+            </p>
+          </div>
+        </a>
+      {/each}
+    </div>
+  </div>
+  
+  <!-- Projects I Contributed To -->
+  <div class="mt-8">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-['Jersey_10']">Projects I've Contributed To</h2>
+      <a href="/projects?filter=contributed" class="text-gamegarage-yellow hover:underline font-['Jersey_10']">View All</a>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {#each contributedProjects as project, i}
+        <a href={`/projects/${project.id}`} class="bg-gamegarage-gray rounded-lg overflow-hidden hover:transform hover:scale-[1.02] transition-transform animate-slide-in" style="animation-delay: {0.5 + (i * 0.1)}s">
+          <div class="h-40 bg-gamegarage-light-gray relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+              </svg>
+            </div>
+          </div>
+          <div class="p-4">
+            <div class="flex justify-between items-start mb-1">
+              <h3 class="text-lg font-['Jersey_10'] text-gamegarage-yellow">
+                {project.title}
+              </h3>
+              <div class="bg-gamegarage-orange text-black text-xs px-2 py-1 font-['Jersey_10'] rounded">
+                Contributor
+              </div>
+            </div>
+            <div class="flex items-center text-xs text-gray-400 mb-2">
+              <span>By: {project.ownerName}</span>
+              <span class="mx-2">•</span>
+              <span class="bg-gamegarage-dark px-2 py-1 rounded">{project.tags[0]}</span>
+            </div>
+            <p class="text-sm text-gray-300 line-clamp-2">
+              {project.description}
+            </p>
+            <div class="mt-2 text-xs text-gamegarage-yellow">
+              Your contribution: {project.contributionType}
+            </div>
+          </div>
+        </a>
+      {/each}
+    </div>
+  </div>
+  
+  <!-- Recent Activities -->
+  <div class="mt-8">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-['Jersey_10']">Recent Activities</h2>
+      <a href="/profile/activities" class="text-gamegarage-yellow hover:underline font-['Jersey_10']">View All</a>
     </div>
     
     <div class="space-y-4">
       {#each Array(3) as _, i}
-        <div class="bg-gamegarage-gray rounded-lg p-4 animate-slide-in" style="animation-delay: {0.3 + (i * 0.1)}s">
+        <div class="bg-gamegarage-gray rounded-lg p-4 animate-slide-in" style="animation-delay: {0.7 + (i * 0.1)}s">
           <div class="flex gap-3">
             <div class="w-10 h-10 rounded-full bg-gamegarage-light-gray flex-shrink-0 flex items-center justify-center">
               {#if i % 3 === 0}
@@ -153,7 +308,7 @@
               {/if}
             </div>
             <div>
-              <p class="text-sm">
+              <p class="text-sm font-['Jersey_10']">
                 {i === 0 ? 'You published a new project "Pixel Adventure"' : 
                  i === 1 ? 'You liked "Neon Racer" project' : 
                  'You commented on "Game Design Workshop" event'}

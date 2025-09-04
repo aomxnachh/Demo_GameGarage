@@ -40,8 +40,7 @@
   <h1 class="text-2xl md:text-3xl font-['Jersey_10'] text-center mb-6 text-gamegarage-yellow leading-normal">Projects</h1>
   
   <p class="text-center text-gray-300 max-w-2xl mx-auto mb-8 font-['Jersey_10'] text-xl">
-    Discover amazing pixel games created by our community members. 
-    Filter by genre or search for specific projects to find your next favorite game!
+    lorem ipsum dolor sit amet consectetur adipisicing elit. Sed earum corrupti labore dicta maiores, id deleniti error at nemo ipsum quod asperiores ex dolorum eveniet illo! Culpa blanditiis numquam amet.
   </p>
   
   <!-- Search and Filters -->

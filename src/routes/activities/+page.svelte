@@ -4,7 +4,7 @@
     title: string;
     description: string;
     date: string;
-    type: 'upcoming' | 'post';
+    type: 'upcoming' | 'past';
     image: string;
   }
   
@@ -15,7 +15,7 @@
            i === 3 ? "Character Design" : i === 4 ? "VFX Workshop" : "Indie Game Talk",
     description: "Learn how to create stunning pixel art for your games. This workshop covers character design, environments, and animation basics.",
     date: "01/09/2025",
-    type: i === 0 ? 'upcoming' : 'post',
+    type: i === 0 ? 'upcoming' : 'past',
     image: "/placeholder.jpg"
   }));
 
@@ -38,8 +38,7 @@
   <h1 class="text-2xl md:text-3xl font-['Jersey_10'] text-center mb-6 text-gamegarage-yellow leading-normal">Activities</h1>
   
   <p class="text-center text-gray-300 max-w-2xl mx-auto mb-8 font-['Jersey_10'] text-xl">
-    Join our game development activities, workshops, and events to level up your skills
-    and connect with other developers in the GameGarage community!
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, animi facere impedit itaque sunt eaque voluptatum consectetur placeat numquam voluptas aspernatur perferendis amet quod, fugit alias harum unde. Voluptatum, similique.
   </p>
   
   <!-- Search and Filters -->
@@ -103,12 +102,12 @@
           </div>
           
           {#if activity.type === 'upcoming'}
-            <div class="absolute top-0 left-0 bg-gamegarage-yellow text-gamegarage-black text-xs font-['Jersey_10'] py-1 px-2 pixel-border border-0 border-r-2 border-b-2 border-black z-10">
+            <div class="absolute top-0 left-0 bg-green-500 text-gamegarage-black text-xs font-['Jersey_10'] py-1 px-2 pixel-border border-0 border-r-2 border-b-2 border-black z-10">
               UPCOMING
             </div>
           {:else}
-            <div class="absolute top-0 left-0 bg-gamegarage-orange text-gamegarage-black text-xs font-['Jersey_10'] py-1 px-2 pixel-border border-0 border-r-2 border-b-2 border-black z-10">
-              POST
+            <div class="absolute top-0 left-0 bg-red-500 text-gamegarage-black text-xs font-['Jersey_10'] py-1 px-2 pixel-border border-0 border-r-2 border-b-2 border-black z-10">
+              PAST
             </div>
           {/if}
         </div>

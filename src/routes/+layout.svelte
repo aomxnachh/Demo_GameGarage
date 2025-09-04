@@ -10,7 +10,7 @@
 <svelte:head>
 	<link rel="icon" href={favicon} />
 	<link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
-	<title>GameGarage - Pixel Perfect Game Development</title>
+	<title>GameGarage</title>
 	<meta name="description" content="Build, share, and discover pixel-perfect games with our community of indie developers" />
 </svelte:head>
 
